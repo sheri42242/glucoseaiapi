@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="code/fast.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/css/mdb.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+        }
+
+        .logo-img {
+            width: 40%;
+        }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(to right, hsl(168, 87%, 32%), hsl(251, 68%, 42%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            font-family: poppins;
+            font-size: 3rem;
+          text-transform: uppercase;
+            line-height: 160%;
+            max-width: 80%;
+            margin: 0 auto;
+            padding-top: 0%;
+            padding-bottom: 0%;
+            text-shadow: 0px 2px 5px rgba(231, 231, 231, 0.373);
+        }
+
+        .card-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 -20px;
+        }
+
+        .card {
+            flex: 1;
+            margin: 0 15px;
+            margin-top: 2%;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.5s ease, transform 0.5s ease;
+        }
+
+        .card:hover {
+            border: 1px solid #ffffff;
+            overflow: hidden;
+            box-shadow: 0px 16px 30px #e6e6e6;
+            transform: translateY(-20px);
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1.8rem;
+        }
+
+        .card-text {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            margin: 5px;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 25px 0;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+
+        .text-reset {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a href="index.html" class="navbar-brand  ms-5 ">
+          <img class="image-fluid logo-img" width="30%" src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" alt="">
+        </a>
+        <!-- Left links -->
+      
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarRightAlignExample ">
+        <!-- Left links -->
+        <ul class="navbar-nav ms-auto me-5 mb-lg-0">
+          <li class="nav-item me-2">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/predict_hba1c.html">Diabetes</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/predictpndm.html">PNDM</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/heart.html">Heart Risk</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/predict_bmi.html">BMI</a>
+          </li>
+          <!-- Navbar dropdown -->
+          
+         
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    
+      </div>
+   
+    </div>
+  
+  </nav>
+  <!-- Navbar -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<div class="container-fluid">
+    <div class="row mt-2 pt-5">
+        <div class=" d-flex justify-content-center align-items-center text-center">
+            <div id="alert" style="background-color: #9affe200; color:rgb(37, 25, 25);"
+                 class="alert alert-success align-items-center">
+                <a><img width="50%" src="https://svgshare.com/i/tvJ.svg" alt="warning-calendar"></a>
+                <h2 class="mt-4"> Yay! You don't have any diabetes </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid text-center" style="padding-bottom: 6%; padding-top: 3%;">
+    <div class="container-fluid text-center pt-2 mb-5">
+        <h1 class="header text-center"> Here are a few recommendations to help you maintain your health:</h1>
+    </div>
+    <div class="card-group">
+        <div class="card rounded">
+            <div class="card-body">
+                <h5 class="card-title">Balanced Diet</h5>
+                <p class="card-text">Focus on consuming a well-balanced diet consisting of fresh fruits, vegetables,
+                    whole grains, lean proteins, and healthy fats. Limit the intake of processed foods, sugary beverages,
+                    and high-fat snacks.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Regular Exercise</h5>
+                <p class="card-text">Engage in regular physical activity to keep your body active and fit. Aim for at
+                    least 30 minutes of moderate-intensity exercise most days of the week. You can choose activities that
+                    you enjoy, such as walking, jogging, cycling, or swimming.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Weight Management</h5>
+                <p class="card-text">Maintain a healthy weight that is appropriate for your age, height, and body type.
+                    If necessary, consult with a healthcare professional or a registered dietitian to develop a
+                    personalized weight management plan.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-group mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Routine Check-ups</h5>
+                <p class="card-text">Schedule regular check-ups with your healthcare provider to monitor your overall
+                    health and discuss any concerns or questions you may have. These check-ups will help detect any
+                    potential health issues at an early stage.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Stress Management</h5>
+                <p class="card-text">Practice stress-reducing techniques such as meditation, deep breathing exercises, or
+                    engaging in hobbies and activities that help you relax and unwind. Chronic stress can have negative
+                    effects on your health, so it's important to manage it effectively.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sleep Patterns</h5>
+                <p class="card-text">Ensure you get sufficient and quality sleep each night. Aim for 7-9 hours of
+                    uninterrupted sleep to support your overall health and well-being.</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="mt-5 justify-content-center align-items-center text-center">
+            <button onclick="location.href='http:index.html'" class="btn btn-lg btn-dark">Browse Features</button>
+            <button onclick="location.href='http:predict_hba1c.html'" class="btn btn-lg btn-danger">Predict Again</button>
+        </div>
+    </div>
+    <br>
+</div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <a href="http:index.html">
+                            <img src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" width="65%" alt=""></a>
+                    </h6>
+                    <p>
+                        Empowering Health through Advanced Predictive Analysis. Get accurate diabetes predictions based on
+                        HBA1C, PNDM Prediction, and heart attack risk. Take control of your health with our cutting-edge
+                        web app.
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Home
+                    </h6>
+                    <p>
+                        <a href="http:predict_hba1c.html" class="text-reset">Diabetes</a>
+                    </p>
+                    <p>
+                        <a href="http:predictpndm.html" class="text-reset">PNDM</a>
+                    </p>
+                    <p>
+                        <a href="http:heart.html" class="text-reset">Heart Attack</a>
+                    </p>
+                    <p>
+                        <a href="http:predict_bmi.html" class="text-reset">BMI Calculator</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Linkedin</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Twitter</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Instagram</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Facebook</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                    <p><i class="fas fa-envelope me-3"></i> info@example.com</p>
+                    <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                    <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2023 Diabetic
+        <a class="text-reset fw-bold" href="http:https://www.diabetic.com/">diabetic.com</a>
+    </div>
+</footer>
+<!-- Footer -->
+</body>
+</html>

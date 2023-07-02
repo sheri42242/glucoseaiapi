@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Risk Prediction</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#heart-risk-form").submit(function (event) {
+                event.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function (data) {
+                        $('#result-modal-body').text('The probability of heart risk is ' + data.heart_risk.toFixed(2) + '%');
+                        $('#result-modal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Heart Risk Prediction</h1>
+    <form id="heart-risk-form" action="/predict" method="post">
+        <label for="Diabetes_binary">Diabetes Binary:</label>
+        <input type="number" id="Diabetes_binary" name="Diabetes_binary" required><br>
+
+        <label for="HighBP">High Blood Pressure:</label>
+        <input type="number" id="HighBP" name="HighBP" required><br>
+
+        <label for="HighChol">High Cholesterol:</label>
+        <input type="number" id="HighChol" name="HighChol" required><br>
+
+        <label for="CholCheck">Cholesterol Check:</label>
+        <input type="number" id="CholCheck" name="CholCheck" required><br>
+
+        <label for="BMI">BMI:</label>
+        <input type="number" id="BMI" name="BMI" required><br>
+
+        <label for="Smoker">Smoker:</label>
+        <input type="number" id="Smoker" name="Smoker" required><br>
+
+        <label for="Stroke">Stroke:</label>
+        <input type="number" id="Stroke" name="Stroke" required><br>
+
+        <label for="PhysActivity">Physical Activity:</label>
+        <input type="number" id="PhysActivity" name="PhysActivity" required><br>
+
+        <label for="Fruits">Fruits:</label>
+        <input type="number" id="Fruits" name="Fruits" required><br>
+
+        <label for="Veggies">Veggies:</label>
+        <input type="number" id="Veggies" name="Veggies" required><br>
+
+        <label for="HvyAlcoholConsump">Heavy Alcohol Consumption:</label>
+        <input type="number" id="HvyAlcoholConsump" name="HvyAlcoholConsump" required><br>
+
+        <label for="Sex">Sex:</label>
+        <input type="number" id="Sex" name="Sex" required><br>
+
+        <label for="Age">Age:</label>
+        <input type="number" id="Age" name="Age" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="result-modal-body"></div>
+        </div>
+    </div>
+</body>
+</html>

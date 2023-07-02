@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculate BMI</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/css/mdb.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: "Poppins";
+    }
+
+    .normal_values {
+      color: #9a9a9a;
+    }
+
+    .btn-cta {
+      margin-top: 3%;
+      font-family: "Josefin Sans";
+      text-transform: uppercase;
+      font-weight: medium;
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      background-image: -webkit-linear-gradient(-45deg, #ff002f, #b32661, #272C45, #fa3b85);
+      color: #ffffff;
+      border-radius: 3%;
+      padding: 0.6rem 1.7rem;
+      font-size: 1rem;
+      outline: 0;
+      border: 0;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 0px 4px 10px #f950503b;
+      transform: translateY(0);
+    }
+
+    .btn-cta:hover {
+      background-position: 0 0;
+      box-shadow: 0px 8px 12px #be50f92b;
+      transform: translateY(-5px);
+      box-shadow: 0px 3px 16px rgba(114, 114, 114, 0.16);
+    }
+
+    input {
+      caret-color: red;
+    }
+
+    .container {
+      width: 70%;
+      border-radius: 20px;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+
+    .brand-logo {
+      width: fit-content;
+      margin: auto;
+    }
+
+    .btn-cta {
+      margin-left: 5%;
+      margin-top: 28px;
+      font-family: "Josefin Sans";
+      text-transform: uppercase;
+      font-weight: medium;
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      background-image: -webkit-linear-gradient(-45deg, #5900ff, #000000, #272C45, #ff005d);
+      color: #ffffff;
+      border-radius: 3%;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+      outline: 0;
+      border: 0;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 0px 4px 10px #f950503b;
+      transform: translateY(0);
+      margin-bottom: 30px;
+    }
+
+    .btn-cta:hover {
+      background-position: 0 0;
+      transform: translateY(5px);
+      box-shadow: 0px 5px 10px rgba(16, 16, 16, 0.273);
+    }
+
+    #formbmi {
+      padding: 35px;
+      width: fit-content;
+      border-radius: 8px;
+      background-color: #f2f4f9;
+      transition: all 0.5s ease;
+    }
+
+    input {
+      outline: none;
+      border: #565a64 3px solid;
+      border-radius: 8px;
+      padding: 3px;
+      transition: all 0.5s ease;
+      margin-left: 5%;
+    }
+
+    .section-left {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin-top: 2vh;
+      padding-left: 18%;
+    }
+
+    .section-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      margin-top: 2vh;
+      padding-left: 5%;
+    }
+
+    .brand-title {
+      margin-top: 2%;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      color: #565769;
+      letter-spacing: 1px;
+    }
+
+    .inputs {
+      text-align: left;
+    }
+
+    label {
+      margin-top: 10px;
+      margin-left: 5%;
+    }
+
+    #bmiResult {
+      font-weight: 500;
+      color: rgb(214, 48, 95);
+    }
+
+    /* Remove bottom margin */
+    .section-left,
+    .section-right {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a href="index.html" class="navbar-brand  ms-5 ">
+        <img class="image-fluid logo-img" width="30%" src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" alt="">
+      </a>
+      <!-- Left links -->
+    
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarRightAlignExample ">
+      <!-- Left links -->
+      <ul class="navbar-nav ms-auto me-5 mb-lg-0">
+        <li class="nav-item me-2">
+          <a class="nav-link " aria-current="page" href="/index.html">Home</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/predict_hba1c.html">Diabetes</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/predictpndm.html">PNDM</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/heart.html">Heart Risk</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link active" href="/predict_bmi.html">BMI</a>
+        </li>
+        <!-- Navbar dropdown -->
+        
+       
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  
+    </div>
+ 
+  </div>
+
+</nav>
+<!-- Navbar -->
+
+  <div class="container justify-content-center align-items-center">
+    <div class="row">
+      <h1 class="brand-title text-center mt-5 ">Calculate Body Mass Index [BMI]</h1>
+      <div class="col section-left">
+        <form id="formbmi">
+          <label class="mt-3" for="heightFeet">Height (feet):</label>
+          <input type="number" id="heightFeet" min="0" step="1"> <br> <br>
+          <label class="mt-3" for="heightInches">Height (inches):</label>
+          <input type="number" id="heightInches" min="0" max="11" step="1"><br>
+          <label class="mt-5" for="weightKg">Weight (kg):</label>
+          <input type="number" id="weightKg" min="0" step="0.1"><br>
+          <button class="btn-cta" type="button" onclick="calculateBMI()">Calculate BMI</button>
+          <br>
+          <div id="bmiResult" class="mt-3"></div>
+        </form>
+      </div>
+      <div class="col section-right">
+        <p>
+          Your BMI will fit into one of 5 bands:
+          <br>
+          <ul>
+            <li>
+              <strong>Below 18.5</strong> | <i>This is described as underweight.</i>
+            </li>
+            <li>
+              <strong>18.5 to 24.9</strong> | <i>This is described as the 'healthy range'.</i>
+            </li>
+            <li>
+              <strong>25 to 29.9</strong> | <i>This is described as obesity</i>
+            </li>
+            <li>
+              <strong>40 or over</strong> | <i>This is described as severe obesity.</i>
+            </li>
+          </ul>
+        </p>
+      <img width="100%" src="https://i.ibb.co/BsBynV6/3932e867ae54709fb3d2b4f4ebebca7e6f8f6ff4-1993x1199-1.jpg" >
+      </div>
+    </div>
+  </div>
+
+  <script>
+    console.log("OK");
+
+
+    function calculateBMI() {
+      var heightFeet = parseInt(document.getElementById("heightFeet").value);
+      var heightInches = parseInt(document.getElementById("heightInches").value);
+      var weightKg = parseFloat(document.getElementById("weightKg").value);
+      
+      // Convert height to inches
+      var heightInInches = (heightFeet * 12) + heightInches;
+
+// Convert height to meters
+var heightInMeters = heightInInches * 0.0254;
+
+// Calculate BMI
+var bmi = weightKg / (heightInMeters * heightInMeters);
+
+      document.getElementById("bmiResult").textContent = "Your BMI is: " + bmi.toFixed(2);
+    }
+  </script>
+</body>
+</html>

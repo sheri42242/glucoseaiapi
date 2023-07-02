@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Gluco AI</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Predict Diabetes</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Martel+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- JS and CSS custom -->
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/x-icon" href="Assets/fav.svg">
+    <link href="index.scss" rel="stylesheet/scss" type="text/css">
+  <!-- scss -->
+
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+rel="stylesheet"
+/>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var iframe = document.getElementById('predictFrame');
+    var predictButton = document.getElementById('predictButton');
+    
+    predictButton.addEventListener('click', function() {
+      iframe.src = 'http://localhost:8000/predict.html';
+    });
+  });
+</script>
+
+
+</head>
+<body id="body">
+
+  <div id="preloader">
+    <div class="preloader-content">
+    
+      <p id="loading-text">Loading</p>
+    </div>
+  </div>
+  
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+       
+        <div class="container-fluid ">
+       
+          <a href="index.html"><img class="image-fluid logo-img navbar-brand" width="60%" src="Assets/logo.svg" alt=""></a>
+    
+          
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fas fa-bars"></span>
+              
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="container-fluid  d-flex justify-content-end">
+          
+              <div class="navbar-nav">
+            <ul class="navbar-nav me-5  ps-2 pe-2 rounded opacity ">
+              <li class="nav-item">
+                <a class="nav-link active"  href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="input.html">Predict</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+   
+
+      <div class="container-fluid mt-5 ">
+     <div class="row" id="bg1">
+
+      <div class=" col text-center" >
+        <!-- <div class="container-fluid mt-5 icon-container">
+          <img  src="Assets/Icons/blood-pressure.png"  alt="">
+          <img  src="Assets/Icons/blood-pressure (1).png" alt="">
+          <img  src="Assets/Icons/pressure.png" alt="">
+        
+  </div>
+        -->
+        <h1 class="heading_hero">
+          Know Your <span class="gradient-text1"> Diabetes Risk </span><span class="gradient-text"><br>with  AI-Powered </span> <br>Prediction
+        </h1>
+      
+        <h5 class="tagline">
+          Find out if you're at risk for diabetes by AI-based Model
+        </h5>
+        <br>
+        <a href="#" id="predictButton" onclick="loadPredictPage()">
+          <button type="button" class="btn-cta ms-5 mt-3">Predict</button>
+        </a>
+        
+        <a target="_blank" href="https://diabetesatlas.org/idfawp/resource-files/2021/07/IDF_Atlas_10th_Edition_2021.pdf">
+        <button type="button"class="btn btn-light btn-lg ms-2 mt-3">Learn More <span class="arrow">➜ </span></button>
+      </a>
+  
+  
+      </div>
+
+     </div>
+
+      </div>
+      <div class="container-fluid">
+        <div class="row" >
+          <div class=" d-flex justify-content-center align-items-center text-center">
+            <div id="alert" class="alert alert-danger d-flex align-items-center alert-dismissible fade-show mt-5" role="alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+              <div>
+                This product is still in testing phase so results are not 100% accurate! 
+              </div>
+              <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+      <section class="py-5 mt-4">
+        <div class="container-fluid" style="background-color: #f7f7f7;">
+          <div class="row align-items-center">
+            <div class="col text-center text-md-start">
+              <h2 class="ms-5 me-5 mb-3  "><span class="header-2">What is Diabetes</span></h2>
+              <p class="ps-5 pe-5"> Diabetes is a serious, chronic condition that occurs when the body cannot
+                produce enough insulin or cannot effectively use the insulin it does produce. Insulin is an essential hormone produced in the pancreas that helps your body turn food into energy and controls your blood sugar levels. <br>
+                Diabetes has two types:
+              <br>
+                <br>
+                   <strong> Type 1:</strong> Genetic Disorder where immune system kills the Insulin. It cannot be prevented.
+                  
+                 <br>
+                    <strong>Type 2: </strong> Pancreas Stops or decreases insulin production. It can be prevented.
+                 <br>
+              
+               
+              </p>
+              <p id="hide" class="ps-5 pe-5">An insulin deficit, if left unchecked over the long
+                term, can cause damage to many of the body’s
+                organs, leading to life-threatening
+                health complications such as cardiovascular diseases
+                (CVD), nerve damage (neuropathy), kidney damage
+                (nephropathy), lower-limb amputation, and eye disease
+                (mainly affecting the retina) resulting in visual loss and
+                even blindness. </p>
+              <a href="https://diabetesatlas.org/idfawp/resource-files/2021/07/IDF_Atlas_10th_Edition_2021.pdf" class="btn-light btn btn-lg ms-5 shadow-sm" target="_blank">Learn More ➜ </a>
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="Assets/Quest.png" class="img-fluid" width="75%" alt="Illustration">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+     
+        <div class="container-fluid" style="background-color: #ffffff; padding-bottom: 6%; padding-top: 3%;">
+          <div class="heading text-center pt-5 mb-5 text-uppercase">
+           <h1> Quick Facts about Diabetes </h1>
+          </div>
+          <div class="row row-cols-1 row-cols-md-4 g-4 ms-4 me-4 justify-content-center">
+           
+            <!-- Card 1 -->
+            <div class="col">
+              <div class="cardi">
+                <div id="card" class="card-head text-center justify-content-center align-items-center p-3">
+                  <img src="Assets/Icons/Graph.svg" width="15%" alt="">
+                 </div>
+                <div class="cardbody">
+                  <p class="card-text">Type 2 diabetes accounts for the vast majority (over 90%) of diabetes
+                    worldwide</p>
+               
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col">
+              <div class="cardi">
+                <div id="card" class="card-head text-center justify-content-center align-items-center p-3">
+                  <img src="Assets/Icons/Countries People.svg" width="15%" alt="">
+                 </div>
+                <div class="cardbody">
+                  <p class="card-text">An estimated 537 million adults aged 20–79 years are currently living with
+                    diabetes. This represents 10.5% of the world’s population in this age group.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col">
+              <div class="cardi">
+                <div id="card" class="card-head text-center justify-content-center align-items-center p-3">
+                  <img src="Assets/Icons/Money Countries.svg" width="15%" alt="">
+                 </div>
+                <div class="cardbody">
+              
+                  <p class="card-text">Almost 90% of people with undiagnosed diabetes live in low- and middleincome countries</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col">
+              <div class="cardi">
+                <div id="card" class="card-head text-center justify-content-center align-items-center p-3">
+                 <img src="Assets/Icons/Doct.svg" width="15%" alt="">
+                </div>
+                <div class="cardbody">
+            
+                  <p class="card-text">In Africa, South-East Asia and the Western Pacific more than half of people
+                    with diabetes are undiagnosed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col-md-6 text-center">
+                <img src="Assets/faq-file1.png" class="img-fluid" width="75%" alt="Illustration">
+              </div>
+              <div class="col text-center text-md-start">
+                <h2 class="ms-5 me-5 mb-3  "><span class="header-2">How it Works</span></h2>
+                <p class="ps-5 pe-5">Through our AI-powered diabetes prediction tool, we utilize advanced algorithms to analyze your input data, including factors such as age, BMI, and family history, to predict your HbA1c level. HbA1c is a crucial diagnostic method used to determine a person's average blood sugar level over the past 2-3 months, providing valuable insight into their risk for developing diabetes. By accurately predicting your HbA1c level, our tool can help identify individuals who may be at risk for diabetes and allow them to take proactive steps towards managing their health. </p>
+                <a href="input.html">
+                  <button type="button" class="  btn-cta  ms-5 mt-3">Predict</button>
+                </a>
+                  <a target="_blank" href="https://diabetesatlas.org/idfawp/resource-files/2021/07/IDF_Atlas_10th_Edition_2021.pdf">
+                  <button type="button"class="btn btn-light btn-lg ms-2 mt-3">Learn More <span class="arrow">➜ </span></button>
+                </a>
+            
+              </div>
+           
+            </div>
+          </div>
+      <br>
+      <!-- <div class="row d-flex text-center align-items-center justify-content-center">
+        <div class="image-container ">
+          <img width="80%" class="image-fluid img-email" src="Assets/Resource Boy - Gradient Backgrounds Vol. 03/RB Gradient Background 233.jpg" alt="Responsive Image" />
+          <div class="text-container">
+            <h2>Have a question?</h2>
+            <button type="button" class="btn btn-light btn-lg">Get in Touch</button>
+          </div>
+        </div>
+      </div> -->
+<!--      
+      <div class="row ms-5 me-5 d-flex text-center align-items-center justify-content-center">
+        <div class="image-container ">
+        
+          <div class="text-container">
+            <h2 class="ms-5">Have a question?</h2>
+        <a href="mailto:contact@glucoai.com">
+            <button  class="btn btn-light btn-lg me-5">Get in Touch</button></a>
+          </div>
+        </div>
+      </div>
+      -->
+      <div class="row me-5 text-center ">
+        <div class="image-container">
+          <div class="text-container">
+            <h2 class="ms-5">Have a question?</h2>
+            <a href="mailto:contact@glucoai.com">
+              <button class="btn btn-light btn-lg me-5">Get in Touch</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+        </div>
+        
+      </section>
+      <footer  style="background-color: #f1f1f1;">
+        <div class="main-footer widgets-dark typo-light">
+          <div class="container">
+          <div class="row">
+            
+          <div class="col-xs-12 col-sm-6 col-md-3 me-5">
+          <div class="widget subscribe no-box">
+          
+          <img src="Assets/logo.svg" width="70%" alt="">
+          <p class="mt-3"> GlucoseAI is a platform that utilizes machine learning algorithms to predict Diabetes Type 2 in patients through HBA1C Diagnostic Method.</p>
+          </div>
+          </div>
+          
+          <div class="col-xs-12 col-sm-6 col-md-3 me-5">
+          <div class="widget no-box">
+          <h5 class="widget-title">Quick Links<span></span></h5>
+          <ul class="thumbnail-widget">
+          <li>
+          <div class="thumb-content"><a href="#.">Get Started</a></div>	
+          </li>
+          <li>
+          <div class="thumb-content"><a href="#.">About Diabetes</a></div>	
+          </li>
+          <li>
+          <div class="thumb-content"><a href="#.">Dataset Sources</a></div>	
+          </li>
+          <li>
+          <div class="thumb-content"><a href="#.">About Us</a></div>	
+          </li>
+       
+          </ul>
+          </div>
+          </div>
+          
+          <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="widget no-box">
+          <h5 class="widget-title">Get Started<span></span></h5>
+          <p>Get access to your full Training and Marketing Suite.</p>
+          <a class=" btn-cta text-white" href="mailto:glucoseai@gmail.com" target="_blank">Contact us</a>
+          </div>
+          </div>
+           
+        <!-- Grid container -->
+        <div class="container pt-4 text-center">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+       
+     
+            <!-- Instagram -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+      
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center text-dark p-3" style="background-color: #f1f1f1;">
+          © 2020 Copyright:
+          <a class="text-dark" href="https://glucoseai.com/">GlucoseAI.com</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+ 
+      <!-- Scripts -->
+      <!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+></script>
+
+<script>
+window.addEventListener('load', function() {
+  var loader = document.getElementById("preloader");
+  loader.style.opacity = 0;
+  setTimeout(function() {
+    loader.style.display = 'none';
+  }, 1000);
+});
+
+</script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

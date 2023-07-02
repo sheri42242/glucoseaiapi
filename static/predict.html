@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diabetes Prediction Form</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/css/mdb.min.css" integrity="sha384-vSU0Ls9uqKYIuGkCVgofABPMOyHMmErS6RTW7BSwfgCpffWDRbY5Y8Q4u+SGkiO0" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js" integrity="sha384-7I10eRsB4A6a1piv27IbUew+DucFvGOH27fBkiYjsolDTm4hAosG2fxF0R1QR5uo" crossorigin="anonymous"></script>
+
+<style>
+  body{
+    font-family: josefin sans;
+  }
+  
+
+  .btn-cta {
+    margin-top: 3%;
+  font-family: josefin sans;
+  text-transform: uppercase;
+font-weight: medium;
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-image: -webkit-linear-gradient(-45deg,#ff93bb,#8e53c0, #272C45,  #fa3b85);
+  color: #ffffff;
+  border-radius: 3%;
+  padding: .6rem 1.7rem;
+  font-size: 1rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 0px 4px 10px #f950503b;
+  transform: translateY(0);
+  }
+  
+  .btn-cta:hover {
+  background-position: 0 0;
+  box-shadow: 0px 8px 12px #be50f92b;
+  transform: translateY(-5px);
+  box-shadow: 0px 3px 16px rgba(114, 114, 114, 0.16);
+
+}
+input {
+  caret-color: red;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  background: #ecf0f3;
+display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  place-items: center;
+
+  font-family: poppins;
+}
+
+.container {
+  position: relative;
+  width: 50%;
+  height: 500px;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #ecf0f3;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+}
+
+.brand-logo {
+  height: 100px;
+  width: 100px;
+  background: url("https://img.icons8.com/color/100/000000/twitter--v2.png");
+  margin: auto;
+  border-radius: 10%;
+  box-sizing: border-box;
+  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
+}
+
+.brand-title {
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #1DA1F2;
+  letter-spacing: 1px;
+}
+
+.inputs {
+  text-align: left;
+  margin-top: 30px;
+}
+
+label, input, button {
+ 
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+label {
+  margin-bottom: 4px;
+}
+
+label:nth-of-type(2) {
+  margin-top: 12px;
+}
+
+input::placeholder {
+  color: gray;
+}
+
+input {
+  margin-top: 2%;
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 11px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+
+button {
+  color: white;
+  margin-top: 20px;
+  background: #21282c;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
+}
+
+button:hover {
+  box-shadow: none;
+}
+
+a {
+  position: absolute;
+  font-size: 8px;
+  bottom: 4px;
+  right: 4px;
+  text-decoration: none;
+  color: black;
+  background: yellow;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  place-items: center;
+  
+}
+</style>
+
+</head>
+<body id="bird">
+
+  
+  <form id="diabetesForm" action="/diabetes_prediction" method="POST">
+    <br>
+    <label><strong> Diabetes Prediction Form</strong></label>
+    <br>
+    
+   
+    <label for="pregnancies">Pregnancies:</label>
+    <input type="number" name="pregnancies" required><br>
+
+    <label for="Glucose">Glucose:</label>
+    <input type="number" name="Glucose" required><br>
+
+    <label for="BloodPressure">Blood Pressure:</label>
+    <input type="number" name="BloodPressure" required><br>
+
+    <label for="SkinThickness">Skin Thickness:</label>
+    <input type="number" name="SkinThickness" required><br>
+
+    <label for="Insulin">Insulin:</label>
+    <input type="number" name="Insulin" required><br>
+
+    <label for="BMI">BMI:</label>
+    <input type="number" name="BMI" step="0.01" required><br>
+
+    <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+    <input type="number" name="DiabetesPedigreeFunction" step="0.01" required><br>
+
+    <label for="Age">Age:</label>
+    <input class="form-control" type="number" name="Age" required><br>
+
+    <button  type="submit">Predict</button>
+    <p id="result"></p>
+  </form>
+
+
+  
+<!-- 
+  <div id="result"></div> -->
+  <script>
+    console.log("Ok")
+
+    $(document).ready(function() {
+    $('#diabetesForm').submit(function(e) {
+      e.preventDefault();
+
+      var form = $(this);
+      var url = form.attr('action') || window.location.href;
+      var data = form.serializeArray();
+      var jsonData = {};
+
+      // Convert form data to JSON
+      $.map(data, function(n, i) {
+        jsonData[n['name']] = n['value'];
+      });
+
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: JSON.stringify(jsonData), // Send data as JSON
+        contentType: 'application/json', // Set content type to JSON
+        success: function(response) {
+          console.log(response); // Add this line to inspect the response from the server
+          $('#result').text(response.prediction);
+
+          if (response.prediction === 'The person is not diabetic') {
+          
+            // Redirect to precautions.html for non-diabetic prediction
+            window.location.href = '/non_diab.html';
+          } else if (response.prediction === 'The person is diabetic') {
+            // Redirect to non_diab.html for diabetic prediction
+            
+            window.location.href = '/precautions.html';
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    });
+  });
+
+  </script>
+  
+</body>
+</html>

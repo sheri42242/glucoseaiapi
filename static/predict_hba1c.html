@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HbA1c Prediction Form</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/css/mdb.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: "poppins", sans-serif;
+      margin: 0;
+      width: 100vw;
+      height: 100%;
+      background: #fdf7fa;
+      
+     
+    }
+
+    .container {
+      
+      width: 70%;
+      border-radius: 20px;
+      padding-top: 40px;
+      box-sizing: border-box;
+   
+    }
+form{
+  max-width: 70%;
+}
+  
+
+    .normal-values {
+      color: #9a9a9a;
+    }
+
+    .btn-cta {
+      margin-left: 5%;
+      margin-top: 10px;
+      font-family: "Josefin Sans";
+      text-transform: uppercase;
+      font-weight: medium;
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      background-image: -webkit-linear-gradient(-45deg,#ff0000, #000000, #272C45, #ff0000);
+      color: #ffffff;
+      border-radius: 3%;
+      padding: 0.6rem 1.5rem;
+      font-size: .9rem;
+      outline: 0;
+      border: 0;
+      border-radius: .5rem;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 0px 4px 10px #f950503b;
+      transform: translateY(0);
+    }
+
+    .btn-cta:hover {
+      background-position: 0 0;
+      transform: translateY(5px);
+      box-shadow: 0px 5px 10px rgba(16, 16, 16, 0.273);
+    }
+
+    input {
+      caret-color: red;
+   outline: none;
+   border: #9e1d1d 3px solid;
+   border-radius: 8px;
+   padding: 3px;
+    transition: all .5s ease;
+margin-left: 5%;
+      
+        }
+#hba1cForm{
+  
+ 
+  border-radius: 8px;
+  
+  background-color: #f9f2f4;
+  transition: all .5s ease;
+ 
+}
+#hba1cForm:hover{
+  box-shadow: 2px 5px  15px #dedede ;
+}
+    label {
+      margin-left: 5%;
+      margin-top: 7%;
+    }
+
+    .section-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 100vh;
+    margin-top: 10vh;
+    padding-left: 5%;
+    padding-right: 10%;
+
+  }
+    .section-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .lottie-player {
+    width: 100%;
+    height: auto;
+   
+  }
+  </style>
+</head>
+<body id="bird">
+  
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a href="index.html" class="navbar-brand  ms-5 ">
+        <img class="image-fluid logo-img" width="30%" src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" alt="">
+      </a>
+      <!-- Left links -->
+    
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarRightAlignExample ">
+      <!-- Left links -->
+      <ul class="navbar-nav ms-auto me-5 mb-lg-0">
+        <li class="nav-item me-2">
+          <a class="nav-link " aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link active" href="/predict_hba1c.html">Diabetes</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link " href="/predictpndm.html">PNDM</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/heart.html">Heart Risk</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="/predict_bmi.html">BMI</a>
+        </li>
+        <!-- Navbar dropdown -->
+        
+       
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  
+    </div>
+ 
+  </div>
+
+</nav>
+<!-- Navbar -->
+
+  <div class="container ">
+    <div class="row">
+
+   
+    <div class="col section-left mt-5">
+     
+  
+    <form id="hba1cForm" action="/hba1c_prediction" method="POST" class="inputs">
+      <img src="https://svgshare.com/i/ts8.svg" width="100%"> <br>
+      <label for="gender">Gender:</label>
+      <select class="mdb-select" name="gender" required>
+        <option value="0">Female</option>
+        <option value="1">Male</option>
+      </select><br>
+      
+      <label for="hypertension">Hypertension:</label>
+      <select class="mdb-select" name="hypertension" required>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select><br>
+
+      <label for="heart_disease">Heart Disease:</label>
+      <select name="heart_disease" required>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select><br>
+
+      <label for="age">Age:</label>
+      <br>
+      <input class="mt-2" type="number" name="age" required><br>
+
+
+      <label for="bmi">BMI: <span class="normal-values"></span></label> <br>
+      <input class="mt-2" type="number" name="bmi" step="0.01" required><br>
+
+      <label for="HbA1c_level">HbA1c Level:</label> <br>
+      <input class="mt-2" type="number" name="HbA1c_level" step="0.01" required><br>
+
+      <label for="blood_glucose_level">Blood Glucose Level:</label> <br>
+      <input class="mt-2" type="number" name="blood_glucose_level" step="0.01" required><br>
+
+      <button class="btn-cta mt-4 mb-4" type="submit">Predict</button>
+      <p id="result"></p>
+    </form>
+  </div>
+  <div class="col section-right">
+    <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_fx0qink0.json" background="transparent"
+      speed="1"loop autoplay></lottie-player>
+  </div>
+  </div>
+ 
+   
+ 
+  </div>
+     <!-- Footer -->
+     <footer class="text-center text-lg-start bg-white text-muted">
+      <!-- Section: Social media -->
+     
+      <!-- Section: Social media -->
+    
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-3">
+                <a href="http:index.html">
+                <img src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" width="73%" alt=""></a>
+              </h6>
+              <p style="font-size: 13px;">
+                Empowering Health through Advanced Predictive Analysis. Get accurate diabetes predictions based on HBA1C, PNDM Prediction, and heart attack risk. Take control of your health with our cutting-edge web app.
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Home
+              </h6>
+              <p>
+                <a href="http:predict_hba1c.html" class="text-reset">Diabetes</a>
+              </p>
+              <p>
+                <a href="http:predictpndm.html" class="text-reset">PNDM</a>
+              </p>
+              <p>
+                <a href="http:heart.html" class="text-reset">Heart Attack</a>
+              </p>
+              <p>
+                <a href="http:predict_bmi.html" class="text-reset">BMI Calculator</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Useful links
+              </h6>
+              <p>
+                <a href="#!" class="text-reset">Linkedin</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Twitter</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Instagram</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Facebook</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home  text-secondary"></i>Biosciences Dept. COMSATS University ISB</p>
+              <p>
+                <i class="fas fa-envelope  text-secondary"></i>
+               mshehrozhabib3@gmail.com
+              </p>
+              <p><i class="fas fa-phone text-secondary"></i> +92 337 6284382</p>
+              <p><i class="fas fa-print text-secondary"></i> +92 308 1395363</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-4" style="background-color: rgb(255, 255, 255);">
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="http:index.html">GlucoseAI</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  <script>
+    $(document).ready(function() {
+      $('#hba1cForm').submit(function(e) {
+        e.preventDefault();
+
+        var form = $(this);
+        var url = form.attr('action') || window.location.href;
+        var data = form.serializeArray();
+        var jsonData = {};
+
+        // Convert form data to JSON
+        $.map(data, function(n, i) {
+          jsonData[n['name']] = n['value'];
+        });
+
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: JSON.stringify(jsonData), // Send data as JSON
+          contentType: 'application/json', // Set content type to JSON
+          success: function(response) {
+            console.log(response); // Add this line to inspect the response from the server
+            $('#result').text(response.prediction);
+
+            if (response.prediction === 'The person is not diabetic') {
+              // Redirect to non_diabetic.html
+              window.location.href = '/non_diabetic.html';
+            } else if (response.prediction === 'The person is diabetic') {
+              // Redirect to precautions_hba1c.html
+              window.location.href = '/precautions_hba1c.html';
+            }
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

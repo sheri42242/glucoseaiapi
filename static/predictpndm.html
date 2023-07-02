@@ -1,0 +1,486 @@
+<!-- predict_pndm.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict PNDM</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+
+  <!-- MDB UI Kit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.5.0/css/mdb.min.css" crossorigin="anonymous">
+ <!-- Bootstrap and MDB UI Kit JavaScript -->
+ <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.5.0/js/mdb.min.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/css/mdb.min.css" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: "poppins", sans-serif;
+            margin: 0;
+            height: 100%;
+            background: #f8f8f8;
+           
+           
+        }
+
+        form {
+            width: 50%;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        .container {
+            position: relative;
+            width: 70%;
+            border-radius: 20px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .brand-logo {
+            width: fit-content;
+            margin: auto;
+        }
+
+        .brand-title {
+            margin-top: 2%;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #565769;
+            letter-spacing: 1px;
+        }
+
+
+        .normal-values {
+            color: #9a9a9a;
+        }
+
+        .btn-cta {
+      margin-left: 5%;
+      margin-top: 10px;
+      font-family: "Josefin Sans";
+      text-transform: uppercase;
+      font-weight: medium;
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      background-image: -webkit-linear-gradient(-45deg,#5900ff, #000000, #272C45, #0044ff);
+      color: #ffffff;
+      border-radius: 3%;
+      padding: 0.6rem 1.5rem;
+      font-size: .9rem;
+      outline: 0;
+      border: 0;
+      border-radius: .5rem;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 0px 4px 10px #f950503b;
+      transform: translateY(0);
+      margin-bottom: 30px;
+    }
+
+    .btn-cta:hover {
+      background-position: 0 0;
+      transform: translateY(5px);
+      box-shadow: 0px 5px 10px rgba(16, 16, 16, 0.273);
+    }
+        #formpndm{
+      
+          
+  border-radius: 8px;
+  
+  background-color: #f2f4f9;
+  transition: all .5s ease;
+        }
+        input {
+          outline: none;
+   border: #254ab9 3px solid;
+   border-radius: 8px;
+   padding: 3px;
+    transition: all .5s ease;
+margin-left: 5%;
+        }
+        .section-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 100vh;
+    margin-top: 10vh;
+    padding-left: 5%;
+    padding-right: 10%;
+
+  }
+    .section-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .lottie-player {
+    width: 100%;
+    height: auto;
+   
+  }
+        label {
+            margin-top: 10px;
+            margin-left: 5%;
+        }
+
+        #pred {
+           padding: 30px;
+           box-shadow: 6px 10px 20px #6a6a6a18;
+           text-align: center;
+        }
+        .modal {
+  /* Set modal position to fixed */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
+  display: none; /* Hide the modal by default */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  z-index: 9999; /* Set a high z-index to make sure the modal is on top of other elements */
+}
+
+.modal-content {
+  /* Add animation for fade-in effect */
+  animation: fadeIn 0.3s ease-in-out;
+  -webkit-animation: fadeIn 0.3s ease-in-out; /* For Safari */
+  width: 50%; /* Set the desired width of the modal */
+  background-color: #efefef;
+
+  
+}
+
+.close {
+  color: #ffffff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #939393;
+  text-decoration: none;
+}
+
+.modal-header {
+  padding:16px;
+  color: white;
+  background-color: #232424;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #007ce8;
+  color: white;
+}
+
+.btn-info{
+  width: 30%;
+}
+    </style>
+
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a href="index.html" class="navbar-brand  ms-5 ">
+          <img class="image-fluid logo-img" width="30%" src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" alt="">
+        </a>
+        <!-- Left links -->
+      
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarRightAlignExample ">
+        <!-- Left links -->
+        <ul class="navbar-nav ms-auto me-5 mb-lg-0">
+          <li class="nav-item me-2">
+            <a class="nav-link " aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/predict_hba1c.html">Diabetes</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link active" href="/predictpndm.html">PNDM</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/heart.html">Heart Risk</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="/predict_bmi.html">BMI</a>
+          </li>
+          <!-- Navbar dropdown -->
+          
+         
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    
+      </div>
+   
+    </div>
+  
+  </nav>
+  <!-- Navbar -->
+
+<div class="container mt-1 ">
+    <div class="row">
+    <!-- Trigger/Open The Modal -->
+  
+    
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5>In case of Genetic Information, Family History, &amp; Developmental Delay:</h5>
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body p-4">
+     
+      <ul>
+        <li>If the answer is <strong>Yes</strong>, enter <strong>1</strong></li>
+        <br>
+        <li>If the answer is <strong>No</strong>, enter <strong>0</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  
+
+ 
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+
+        <h1 class="mt-2">Predict Permanent Neonatal Diabetes Mellitus (PNDM)   <button class="btn btn-danger btn-lg" id="myBtn">▶ Required: Click First ◀</button></h1>
+       <div class="container">
+        <div class="row">
+          <div class="col section-left mt-2">
+            <form id="formpndm">
+
+              <img src="https://svgshare.com/i/tuJ.svg" width="100%"> <br>
+              <label for="age">Age:</label>
+              <input type="number" id="age" name="age" required><br><br>
+  
+              <label for="hba1c">HbA1c Level:</label>
+              <input type="number" step="0.0000000000001" id="hba1c" name="hba1c" required><br><br>
+  
+              <label for="geneticInfo">Genetic Information:</label>
+              <input type="number" id="geneticInfo" name="genetic_info" required><br><br>
+  
+              <label for="familyHistory">Family History:</label>
+              <input type="number" id="familyHistory" name="family_history" required><br><br>
+  
+              <label for="birthWeight">Birth Weight (kg):</label>
+              <input type="number" step="0.0000000000001" id="birthWeight" name="birth_weight" required><br><br>
+  
+              <label for="developmentalDelay">Developmental Delay:</label>
+              <input  type="number" id="developmentalDelay" placeholder="enter 0" name="developmental_delay" required><br><br>
+  
+              <label for="insulinLevel">Insulin Level:</label>
+              <input  type="number" step="0.0000000000001" id="insulinLevel" name="insulin_level" required><br><br>
+  
+              <button class="btn-cta" type="submit" value="Predict"> Predict</button>
+          </form>
+          </div>
+        </div>
+       </div>
+       <div class="col section-right">
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_4vdm2cza.json" background="transparent"
+          speed="1"loop autoplay></lottie-player>
+      </div>
+        <br>
+        <div class="container mt-4">
+
+            <div class="row text-center mt-5" id="pred">
+                <h3><strong id="prediction"></strong></h3>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-white text-muted">
+      <!-- Section: Social media -->
+     
+      <!-- Section: Social media -->
+    
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-3">
+                <a href="http:index.html">
+                <img src="https://i.ibb.co/JvPCqmW/logo-Recovered.png" width="73%" alt=""></a>
+              </h6>
+              <p style="font-size: 13px;">
+                Empowering Health through Advanced Predictive Analysis. Get accurate diabetes predictions based on HBA1C, PNDM Prediction, and heart attack risk. Take control of your health with our cutting-edge web app.
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Home
+              </h6>
+              <p>
+                <a href="http:predict_hba1c.html" class="text-reset">Diabetes</a>
+              </p>
+              <p>
+                <a href="http:predictpndm.html" class="text-reset">PNDM</a>
+              </p>
+              <p>
+                <a href="http:heart.html" class="text-reset">Heart Attack</a>
+              </p>
+              <p>
+                <a href="http:predict_bmi.html" class="text-reset">BMI Calculator</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Useful links
+              </h6>
+              <p>
+                <a href="#!" class="text-reset">Linkedin</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Twitter</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Instagram</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Facebook</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home  text-secondary"></i>Biosciences Dept. COMSATS University ISB</p>
+              <p>
+                <i class="fas fa-envelope  text-secondary"></i>
+               mshehrozhabib3@gmail.com
+              </p>
+              <p><i class="fas fa-phone text-secondary"></i> +92 337 6284382</p>
+              <p><i class="fas fa-print text-secondary"></i> +92 308 1395363</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-4" style="background-color: rgb(255, 255, 255);">
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="http:index.html">GlucoseAI</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+<script>
+    console.log("Working")
+    const form = document.querySelector('form');
+    const predictionDiv = document.getElementById('prediction');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        fetch('/pndm_prediction', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(result => {
+                const prediction = result.prediction;
+                predictionDiv.innerText = `Prediction: ${prediction}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+/// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "flex"; /* Change display property to "flex" to center the modal */
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+
+</body>
+</html>
